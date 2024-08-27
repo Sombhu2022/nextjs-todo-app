@@ -11,20 +11,34 @@ function page() {
   const [loading, setLoading] = useState(true) // State to manage loading
 
   const fetchTodoData = async () => {
-    setLoading(true) // Start loading
-    const fetchData = await axios.get('/api/todo')
-    console.log("data", fetchData);
-    setData(fetchData.data)
-    setLoading(false) // Stop loading after data is fetched
+    try {
+      
+      setLoading(true) // Start loading
+      const fetchData = await axios.get('/api/todo')
+      console.log("data", fetchData);
+      setData(fetchData.data)
+      setLoading(false) // Stop loading after data is fetched
+    } catch (error) {
+      console.log(error);
+      setLoading(false) // Stop loading after data is fetched
+      
+    }
   }
 
   const todoHandle = async (e) => {
     e.preventDefault()
-    setLoading(true) // Start loading
-    const data = await axios.post("/api/todo/new", { name, message })
-    console.log(data);
-    setData(data.data)
-    setLoading(false) // Stop loading after data is submitted
+    try {
+      
+      setLoading(true) // Start loading
+      const data = await axios.post("/api/todo/new", { name, message })
+      
+      setData(data.data)
+      setLoading(false) // Stop loading after data is submitted
+    } catch (error) {
+      console.log(error);
+      setLoading(false) // Stop loading after data is submitted
+      
+    }
   }
 
   useEffect(() => {

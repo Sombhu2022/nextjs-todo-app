@@ -7,11 +7,20 @@ function page() {
   const { id } = useParams();
   const route = useRouter();
   const [todoData, setTodoData] = useState({});
+  const [loading , setLoading] = useState(true)
   
   const fetchData = async (id) => {
-    const data = await axios.get(`/api/todo/${id}`);
-    if (data) {
-      setTodoData(data.data);
+    try {
+      setLoading(true)
+      const data = await axios.get(`/api/todo/${id}`);
+      if (data) {
+        setTodoData(data.data);
+      }
+      setLoading(false)
+      
+    } catch (error) {
+      console.log(error);
+      setLoading(false)
     }
   }
 
@@ -24,6 +33,18 @@ function page() {
     fetchData(id);
   }, [id]);
   
+
+  if(loading){
+    return(
+    <div className='flex flex-col gap-8 justify-center items-center min-h-screen bg-gradient-to-b from-indigo-100 via-purple-100 to-pink-100 p-5'>
+
+      <div className='flex justify-center items-center'>
+          <div className='loader border-t-transparent border-solid animate-spin rounded-full border-purple-500 border-4 h-12 w-12'></div>
+        </div>
+        </div>
+    )
+  }
+
   return (
     <div className='flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-indigo-100 via-purple-100 to-pink-100 p-5'>
       <h3 className='text-3xl font-semibold text-purple-700 text-center mb-6'>Display Todo Data</h3>
