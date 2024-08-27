@@ -12,21 +12,34 @@ function page() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setLoading(true); // Set loading to true when updating
-        await axios.patch(`/api/todo/${id}`, { name, message });
-        setLoading(false); // Set loading to false after update
-        route.push(`/todo/${id}`);
+        try {
+            
+            setLoading(true); // Set loading to true when updating
+            await axios.patch(`/api/todo/${id}`, { name, message });
+            setLoading(false); // Set loading to false after update
+            route.push(`/todo/${id}`);
+        } catch (error) {
+            console.log(error);
+            setLoading(false)
+        }
     }
 
     useEffect(() => {
         const fetchTodo = async (id) => {
-            setLoading(true); // Set loading to true when fetching data
-            const { data } = await axios.get(`/api/todo/${id}`);
-            if (data) {
-                setName(data.name);
-                setMessage(data.message);
+            try {
+                
+                setLoading(true); // Set loading to true when fetching data
+                const { data } = await axios.get(`/api/todo/${id}`);
+                if (data) {
+                    setName(data.name);
+                    setMessage(data.message);
+                }
+                setLoading(false); // Set loading to false after data is fetched
+            } catch (error) {
+                console.log(error);
+                setLoading(false); // Set loading to false after data is fetched
+                
             }
-            setLoading(false); // Set loading to false after data is fetched
         }
         fetchTodo(id);
     }, [id]);
