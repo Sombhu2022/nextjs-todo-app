@@ -13,6 +13,6 @@ export const GET = async(req)=>{
         return new Response(JSON.stringify(data) ,{statusText:"data fetch successfull"}, {status:200} )
 
     } catch (error) {
-        return new Response("somthing error")
+        return new Response( [] ,{status:400} , {statusText:"somthing error"})
     }
 }
