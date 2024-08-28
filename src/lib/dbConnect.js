@@ -14,7 +14,7 @@ try {
     
     isConnect = true;
 } catch (error) {
-    console.error(" database" ,error)
+    console.error(" database " ,error)
 }
 
 }

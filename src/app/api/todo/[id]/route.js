@@ -12,7 +12,7 @@ export const GET = async(req , {params})=>{
         
      } catch (error) {
         
-        return new Response("data feching feaild" , {status:400} )
+        return new Response([] , {status:400} , {statusText:"data feching feaild"} )
      }
 }
 
@@ -28,7 +28,7 @@ export const PATCH =async(req , {params})=>{
         return new Response(JSON.stringify(data) , {status:200} , {statusText:"data update"})
 
     } catch (error) {
-        return new Response("data update feaild" , {status:400} )
+        return new Response([],{status:400} , {statusText:"data update feaild"} )
         
     }
 }

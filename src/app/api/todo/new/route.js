@@ -13,6 +13,6 @@ export const POST = async(req)=>{
      
     } catch (error) {
       
-      return new Response("data not add")
+      return new Response([],{status:400},{statusText:"data not add"})
    }
 }

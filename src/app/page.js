@@ -42,7 +42,14 @@ function page() {
           <form className='w-full max-w-md px-10 py-8 bg-white border rounded-lg shadow-lg flex flex-col gap-4' onSubmit={todoHandle}>
             <h2 className='text-3xl font-semibold text-purple-700 text-center mb-4'>Add Todo</h2>
             <input className='input-filed border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500' type="text" onChange={(e) => setName(e.target.value)} value={name} placeholder='Enter name' />
-            <input className='input-filed border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500' type="text" onChange={(e) => setMessage(e.target.value)} value={message} placeholder='Enter message' />
+            <textarea
+              className='input-filed border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500'
+              onChange={(e) => setMessage(e.target.value)}
+              value={message}
+              placeholder='Enter message'
+              rows={2}
+              cols={5}>
+            </textarea>      
             <input className='border rounded-lg bg-purple-500 hover:bg-purple-600 text-white font-semibold px-5 py-3 cursor-pointer transition duration-300' type="submit" value="Submit" />
           </form>
 
