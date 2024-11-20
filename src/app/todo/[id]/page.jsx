@@ -25,8 +25,13 @@ function page() {
   }
 
   const handleDelete = async (id) => {
-    await axios.delete(`/api/todo/${id}`);
-    route.push('/todo');
+    try {
+      await axios.delete(`/api/todo/${id}`);
+      route.push('/');
+      
+    } catch (error) {
+       console.error(error)
+    }
   }
 
   useEffect(() => {
@@ -50,8 +55,8 @@ function page() {
       <h3 className='text-3xl font-semibold text-purple-700 text-center mb-6'>Display Todo Data</h3>
       
       <div className='w-full max-w-lg bg-white border rounded-lg shadow-lg p-6'>
-        <h3 className='text-2xl font-medium text-gray-800 mb-4'>{todoData?.name}</h3>
-        <p className='text-gray-600 mb-6'>{todoData?.message}</p>
+        
+        <p className='text-gray-600 mb-6'>{todoData?.data?.message}</p>
         
         <div className="flex justify-between gap-4">
           <button 

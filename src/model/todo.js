@@ -1,14 +1,25 @@
-const { Schema, model, models } = require("mongoose");
+const { Schema, model, models, default: mongoose } = require("mongoose");
 
 
 const todoSchema =new Schema({
-    name:{
-        type:String ,
-        required:[true , " this feild are required"]
-    },
+    user : {
+      type:mongoose.Schema.Types.ObjectId ,
+      ref : 'user' ,
+      
+    } ,
+    file :{
+       url :{
+          type:String , 
+          required : [true , 'file url is required !']
+       },
+       key :{
+          type:String ,
+          required : [true , 'public_id is required !']
+       }
+    } , 
     message:{
         type:String , 
-        required:[true , "message field are required"]
+        default : null
     }
 },{ timestamps: true})
 
